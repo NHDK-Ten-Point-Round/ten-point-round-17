@@ -1,0 +1,191 @@
+\documentclass[12pt]{article}
+\usepackage{xeCJK}
+\usepackage{fontspec}
+\usepackage[a4paper,top=2.8cm,bottom=2.8cm,left=2.3cm,right=2.3cm]{geometry}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{indentfirst}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{ulem}
+\usepackage{version}
+\usepackage{thmtools}
+\usepackage{qtree}
+\usepackage{algpseudocode}
+\usepackage{mathtools}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{ctable}
+\usepackage{totcount}
+\usepackage{textpos}
+
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt
+
+\setCJKmainfont[BoldFont={SourceHanSerifTW-SemiBold.otf},AutoFakeSlant]{SourceHanSerifTW-Regular.otf}
+\setmonofont{JetBrainsMono-Regular.ttf}
+\newfontfamily{\ProblemTitleMainFont}{SourceHanSerifTW-Bold.otf}
+\newCJKfontfamily{\ProblemTitleCJKFont}{SourceHanSerifTW-Bold.otf}
+\newcommand{\ProblemTitleFont}{\ProblemTitleMainFont\ProblemTitleCJKFont}
+
+\pagestyle{fancy}
+
+\lstset{
+basicstyle=\footnotesize\ttfamily
+}
+
+% \raggedcolumns
+
+\newcommand{\ProblemTitle}[2]{\noindent\Large{\ProblemTitleFont #1 (#2)}\normalsize\par}
+\newcommand{\ProblemSection}[1]{\vspace{0.6cm}\par\noindent\large{\ProblemTitleFont #1}\normalsize\par}
+\newcommand{\ProblemSubsection}[1]{\par\noindent{\ProblemTitleFont #1}\par}
+\newcommand{\ProblemStatement}{\ProblemSection{問題敘述}}
+\newcommand{\ProblemInput}{\ProblemSection{輸入說明}}
+\newcommand{\ProblemOutput}{\ProblemSection{輸出說明}}
+\newcommand{\ProblemConstraints}{\ProblemSection{測資限制}}
+
+\newcommand{\ProblemSampleTitle}{\ProblemSection{範例測資}}
+
+\newcounter{ProblemSample}
+\newcommand{\ProblemSample}[2]{
+    \stepcounter{ProblemSample}
+    \noindent
+    \begin{minipage}[t]{0.5\textwidth}
+        \ProblemSubsection{範例輸入 \theProblemSample}
+        \lstinputlisting{#1}
+    \end{minipage}
+    \begin{minipage}[t]{0.5\textwidth}
+        \ProblemSubsection{範例輸出 \theProblemSample}
+        \lstinputlisting{#2}
+    \end{minipage}
+}
+\newenvironment{ProblemSampleWithNote}[2]{
+    \stepcounter{ProblemSample}
+    \noindent
+    \begin{minipage}[t]{0.5\textwidth}
+        \ProblemSubsection{範例輸入 \theProblemSample}
+        \lstinputlisting{#1}
+    \end{minipage}
+    \begin{minipage}[t]{0.5\textwidth}
+        \ProblemSubsection{範例輸出 \theProblemSample}
+        \lstinputlisting{#2}
+    \end{minipage}
+    \vspace{-0.4cm}
+    \ProblemSubsection{範例說明 \theProblemSample}
+}{}
+
+\newcommand{\ProblemSubtaskTitle}{\ProblemSection{評分說明}}
+\newtotcounter{ProblemSubtask}
+\newenvironment{ProblemSubtaskTable}{
+    \begin{center}
+        \begin{tabular}{ccl}
+            \specialrule{1.3pt}{0pt}{1pt}
+            子任務 & 分數 & 額外輸入限制 \\
+            \specialrule{0.5pt}{1pt}{1pt}
+}
+{
+            \specialrule{1.3pt}{1pt}{0pt}
+        \end{tabular}
+    \end{center}
+}
+\newcommand{\ProblemSubtask}[2]{ \stepcounter{ProblemSubtask} \theProblemSubtask & #1 & #2 \\ }
+
+\setlist[enumerate]{itemsep=0pt, parsep=0pt, topsep=0pt}
+\setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt}
+
+
+
+\begin{document}
+
+
+%\begin{textblock}{3.8}(9.7,-1.2)
+	%\includegraphics[height=1.4cm]{NHDK_B.png}
+%\end{textblock}
+
+\begin{textblock}{0.1}(-0.6,-1.1)
+	\includegraphics[height=1.2cm]{AA_YTP.png}
+\end{textblock}
+
+
+
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\baselinestretch}{1.3}
+\pagenumbering{arabic}
+\setlength\parindent{24pt}
+\setlength\parskip{12pt}
+\cfoot{\thepage}
+\rhead{
+	\small{NHDK Ten Point Round \#17 \\(Div.1+2, Sponsored by YTP)}
+	
+}
+
+\ProblemTitle{B. 豪邁大笑的Koying}{Laughing Koying}
+
+\ProblemStatement
+
+乾，你害我上課看著下面笑出來
+
+如果是經常在上課時間跟 Koying 聊天的人一定對這句話不陌生，因為每當聊到有趣好笑的事情，笑點低下的 Koying 就會莫名地看著手機笑了出來，然後就會出現最開頭的那句話。
+
+雖然 Koying 的笑點低下，但是每天 Koying 的笑點也會因為他上上下下的情緒而有起伏，因此每天的笑點也會不盡相同。
+
+每天 Koying 都會接受到一件好笑指數為 $l_i$ 的事情，但只有當 $l_i \ge$ 好笑指數門檻 $k$ 時 Koying 才會把他記起來，且接收完該天的好笑事情之後，若 Koying 還記得的好笑事情的好笑指數總和 $\ge$ 當天的笑點 $a_i$，他就會豪邁大笑並且把所有的事情都忘光光。
+
+給定好笑指數門檻 $k$ 、每天接收到的好笑指數 $l_i$ 以及該天的笑點 $a_i$，請幫忙算出 Koying 會豪邁大笑幾次以及會在哪幾天豪邁大笑吧！
+
+\ProblemInput
+
+第一行有二非負整數 $n,\ k$，代表總共有 $n$ 天以及好笑指數門檻 $k$ 代表每天的好笑指數需要 $\ge k$ 才會被 Koying 記起來。
+
+第二行有 $n$ 個正整數代表 Koying 在第 $i$ 天的笑點 $a_i\ (1 \le i \le n)$。
+
+第三行有 $n$ 個正整數代表 Koying 在時間第 $i$ 天所接收到的好笑指數 $l_i\ (1 \le i \le n)$。
+
+
+\ProblemOutput
+
+輸出第一行包含一非負整數 $cnt$ 代表 Koying 豪邁大笑了 $cnt$ 次。
+
+第二行有 $cnt$ 個正整數代表由小到大代表 Koying 在哪幾天會豪邁大笑，若沒有豪邁大笑則不輸出第二行。
+
+\clearpage
+
+\ProblemConstraints
+
+\begin{itemize}
+	\item $1 \le n \le 10^5$
+	\item $0 \le k \le 10^5$
+    \item $1 \le a_i,\ l_i \le 10^9$
+\end{itemize}
+
+\ProblemSampleTitle
+
+\ProblemSample{1in.txt}{1out.txt}
+
+\begin{ProblemSampleWithNote}{2in.txt}{2out.txt}
+第一天因為 Koying 得到的好笑指數 $< k$ ，所以不會被 Koying 記住。
+
+而第二、四天所累加的好笑指數皆 $\ge k$ 該天的笑點，因此 Koying 會在這幾天豪邁大笑。
+\end{ProblemSampleWithNote}
+
+\ProblemSample{3in.txt}{3out.txt}
+
+
+
+\ProblemSubtaskTitle
+
+本題共有 \total{ProblemSubtask} 組子任務，條件限制如下所示。
+
+\begin{ProblemSubtaskTable}
+    \ProblemSubtask{30}{$k=0$}
+    \ProblemSubtask{70}{無額外限制}
+\end{ProblemSubtaskTable}
+
+\end{document}

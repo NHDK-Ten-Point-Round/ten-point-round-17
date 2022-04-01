@@ -1,0 +1,186 @@
+\documentclass[12pt]{article}
+\usepackage{xeCJK}
+\usepackage{fontspec}
+\usepackage[a4paper,top=2.8cm,bottom=2.8cm,left=2.3cm,right=2.3cm]{geometry}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{indentfirst}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{ulem}
+\usepackage{version}
+\usepackage{thmtools}
+\usepackage{qtree}
+\usepackage{algpseudocode}
+\usepackage{mathtools}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{ctable}
+\usepackage{totcount}
+\usepackage{textpos}
+
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt
+
+\setCJKmainfont[BoldFont={SourceHanSerifTW-SemiBold.otf},AutoFakeSlant]{SourceHanSerifTW-Regular.otf}
+\setmonofont{JetBrainsMono-Regular.ttf}
+\newfontfamily{\ProblemTitleMainFont}{SourceHanSerifTW-Bold.otf}
+\newCJKfontfamily{\ProblemTitleCJKFont}{SourceHanSerifTW-Bold.otf}
+\newcommand{\ProblemTitleFont}{\ProblemTitleMainFont\ProblemTitleCJKFont}
+
+\pagestyle{fancy}
+
+\lstset{
+basicstyle=\footnotesize\ttfamily
+}
+
+% \raggedcolumns
+
+\newcommand{\ProblemTitle}[2]{\noindent\Large{\ProblemTitleFont #1 (#2)}\normalsize\par}
+\newcommand{\ProblemSection}[1]{\vspace{0.6cm}\par\noindent\large{\ProblemTitleFont #1}\normalsize\par}
+\newcommand{\ProblemSubsection}[1]{\par\noindent{\ProblemTitleFont #1}\par}
+\newcommand{\ProblemStatement}{\ProblemSection{問題敘述}}
+\newcommand{\ProblemInput}{\ProblemSection{輸入說明}}
+\newcommand{\ProblemOutput}{\ProblemSection{輸出說明}}
+\newcommand{\ProblemConstraints}{\ProblemSection{測資限制}}
+
+\newcommand{\ProblemSampleTitle}{\ProblemSection{範例測資}}
+
+\newcounter{ProblemSample}
+\newcommand{\ProblemSample}[2]{
+    \stepcounter{ProblemSample}
+    \noindent
+    \begin{minipage}[t]{0.5\textwidth}
+        \ProblemSubsection{範例輸入 \theProblemSample}
+        \lstinputlisting{#1}
+    \end{minipage}
+    \begin{minipage}[t]{0.5\textwidth}
+        \ProblemSubsection{範例輸出 \theProblemSample}
+        \lstinputlisting{#2}
+    \end{minipage}
+}
+\newenvironment{ProblemSampleWithNote}[2]{
+    \stepcounter{ProblemSample}
+    \noindent
+    \begin{minipage}[t]{0.5\textwidth}
+        \ProblemSubsection{範例輸入 \theProblemSample}
+        \lstinputlisting{#1}
+    \end{minipage}
+    \begin{minipage}[t]{0.5\textwidth}
+        \ProblemSubsection{範例輸出 \theProblemSample}
+        \lstinputlisting{#2}
+    \end{minipage}
+    \vspace{-0.4cm}
+    \ProblemSubsection{範例說明 \theProblemSample}
+}{}
+
+\newcommand{\ProblemSubtaskTitle}{\ProblemSection{評分說明}}
+\newtotcounter{ProblemSubtask}
+\newenvironment{ProblemSubtaskTable}{
+    \begin{center}
+        \begin{tabular}{ccl}
+            \specialrule{1.3pt}{0pt}{1pt}
+            子任務 & 分數 & 額外輸入限制 \\
+            \specialrule{0.5pt}{1pt}{1pt}
+}
+{
+            \specialrule{1.3pt}{1pt}{0pt}
+        \end{tabular}
+    \end{center}
+}
+\newcommand{\ProblemSubtask}[2]{ \stepcounter{ProblemSubtask} \theProblemSubtask & #1 & #2 \\ }
+
+\setlist[enumerate]{itemsep=0pt, parsep=0pt, topsep=0pt}
+\setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt}
+
+
+
+\begin{document}
+
+
+
+\begin{textblock}{0.1}(-0.6,-1.1)
+	\includegraphics[height=1.2cm]{AA_YTP.png}
+\end{textblock}
+
+
+
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\baselinestretch}{1.3}
+\pagenumbering{arabic}
+\setlength\parindent{24pt}
+\setlength\parskip{12pt}
+\cfoot{\thepage}
+\rhead{
+	\small{NHDK Ten Point Round \#17 \\(Div.1+2, Sponsored by YTP)}
+	
+}
+
+\ProblemTitle{E. Koying 的彈跳床飛行記}{Flying Koying}
+
+\ProblemStatement
+
+Koying 今天來到了 Coding 夢之國遊玩，一聽到夢之國內有一個利用超大型彈跳床來讓遊客飛上天的設施，Koying 便迫不及待的前往報名，希望可以一圓他的飛行夢。
+
+這個飛行設施建立在一個長度為 $n$ 的條狀場地上，其中在第 $1,...,n$ 的點上都配有一個超大型彈跳床。
+
+每個彈跳床都有一個快樂指數 $h_i$ 代表使用那個彈跳床可以讓 Koying 獲得幾點的快樂，並且可以設定其要往前彈跳多遠，不過距離最多不能超過 $r$ 個單位。
+
+舉例來說，如果 Koying 選擇在第 $1$ 個點的超大彈跳床往前跳兩個單位，且 $h_1 = 5$，那麼 Koying 就會在第 $3$ 個點落下並獲得 $5$ 點的快樂指數。
+
+Koying 可以選擇要從哪個彈跳床開始遊玩，不過有以下的限制：Koying 如果跳出場地之外他就會摔死，所以絕對不可以超出場地，且 Koying 在落地之後一定得在落地的地方馬上再往前飛至少一單位，否則就要退出遊戲。請你告訴 Koying 在跳不超過 $k$ 次的情況下最多可以獲得幾點的快樂指數。
+
+\ProblemInput
+
+輸入第一行有四個正整數 $n,r,k$ 代表場地的長度、 彈跳床最多可以往前幾單位以及 Koying 最多可以飛行幾次
+
+輸入第二行有 $n$ 個整數 $h_1,h_2,...,h_n$ 代表在每個點使用彈跳床所能獲得的快樂指數
+
+\ProblemOutput
+
+輸出一個整數代表 Koying 在不飛出場地以及不飛行超過 $k$ 次的情況下最多可以得到的快樂指數。
+
+\clearpage
+
+\ProblemConstraints
+
+\begin{itemize}
+    \item $1 \le n \le 5000$
+    \item $1 \le r \le n$
+    \item $1 \le k \le n$
+    \item $1 \le h_i \le 10^5$
+\end{itemize}
+
+\ProblemSampleTitle
+
+\begin{ProblemSampleWithNote}{00_01.in}{00_01.out}
+
+在範例一中，最多只能飛一次，所以我們選擇在 $i=3$ 的點往前飛一單位到 $i=4$，並獲得 $8$ 點快樂指數
+
+\end{ProblemSampleWithNote}
+
+\begin{ProblemSampleWithNote}{00_02.in}{00_02.out}
+在範例二中，雖然最佳解是從 $i=2$ 飛到 $i=4$ 再飛到 $i=5$，但因為彈跳床最多只能飛一單位，所以最佳情況是從 $i=2$ 飛到 $i=3$ 再飛到 $i=4$，獲得 $12$ 點快樂指數
+\end{ProblemSampleWithNote}
+
+%\ProblemSample{ex1.in}{ex1.out}
+
+\ProblemSubtaskTitle
+
+本題共有 \total{ProblemSubtask} 組子任務，條件限制如下所示。
+
+\begin{ProblemSubtaskTable}
+    \ProblemSubtask{15}{$r=n,\ n \le 500$} %O(nrk)前墜
+    \ProblemSubtask{35}{$r=n$} % 前墜 DP   
+    \ProblemSubtask{11}{$n \le 500$}  % O(nrk)
+    \ProblemSubtask{39}{無額外限制} % O()
+\end{ProblemSubtaskTable}
+
+\end{document}

@@ -1,0 +1,192 @@
+\documentclass[12pt]{article}
+\usepackage{xeCJK}
+\usepackage{fontspec}
+\usepackage[a4paper,top=2.8cm,bottom=2.8cm,left=2.3cm,right=2.3cm]{geometry}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{indentfirst}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{ulem}
+\usepackage{version}
+\usepackage{thmtools}
+\usepackage{qtree}
+\usepackage{algpseudocode}
+\usepackage{mathtools}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{ctable}
+\usepackage{totcount}
+\usepackage{textpos}
+
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt
+
+\setCJKmainfont[BoldFont={SourceHanSerifTW-SemiBold.otf},AutoFakeSlant]{SourceHanSerifTW-Regular.otf}
+\setmonofont{JetBrainsMono-Regular.ttf}
+\newfontfamily{\ProblemTitleMainFont}{SourceHanSerifTW-Bold.otf}
+\newCJKfontfamily{\ProblemTitleCJKFont}{SourceHanSerifTW-Bold.otf}
+\newcommand{\ProblemTitleFont}{\ProblemTitleMainFont\ProblemTitleCJKFont}
+
+\pagestyle{fancy}
+
+\lstset{
+basicstyle=\footnotesize\ttfamily
+}
+
+% \raggedcolumns
+
+\newcommand{\ProblemTitle}[2]{\noindent\Large{\ProblemTitleFont #1 (#2)}\normalsize\par}
+\newcommand{\ProblemSection}[1]{\vspace{0.6cm}\par\noindent\large{\ProblemTitleFont #1}\normalsize\par}
+\newcommand{\ProblemSubsection}[1]{\par\noindent{\ProblemTitleFont #1}\par}
+\newcommand{\ProblemStatement}{\ProblemSection{問題敘述}}
+\newcommand{\ProblemInput}{\ProblemSection{輸入說明}}
+\newcommand{\ProblemOutput}{\ProblemSection{輸出說明}}
+\newcommand{\ProblemConstraints}{\ProblemSection{測資限制}}
+
+\newcommand{\ProblemSampleTitle}{\ProblemSection{範例測資}}
+
+\newcounter{ProblemSample}
+\newcommand{\ProblemSample}[2]{
+    \stepcounter{ProblemSample}
+    \noindent
+    \begin{minipage}[t]{0.5\textwidth}
+        \ProblemSubsection{範例輸入 \theProblemSample}
+        \lstinputlisting{#1}
+    \end{minipage}
+    \begin{minipage}[t]{0.5\textwidth}
+        \ProblemSubsection{範例輸出 \theProblemSample}
+        \lstinputlisting{#2}
+    \end{minipage}
+}
+\newenvironment{ProblemSampleWithNote}[2]{
+    \stepcounter{ProblemSample}
+    \noindent
+    \begin{minipage}[t]{0.5\textwidth}
+        \ProblemSubsection{範例輸入 \theProblemSample}
+        \lstinputlisting{#1}
+    \end{minipage}
+    \begin{minipage}[t]{0.5\textwidth}
+        \ProblemSubsection{範例輸出 \theProblemSample}
+        \lstinputlisting{#2}
+    \end{minipage}
+    \vspace{-0.4cm}
+    \ProblemSubsection{範例說明 \theProblemSample}
+}{}
+
+\newcommand{\ProblemSubtaskTitle}{\ProblemSection{評分說明}}
+\newtotcounter{ProblemSubtask}
+\newenvironment{ProblemSubtaskTable}{
+    \begin{center}
+        \begin{tabular}{ccl}
+            \specialrule{1.3pt}{0pt}{1pt}
+            子任務 & 分數 & 額外輸入限制 \\
+            \specialrule{0.5pt}{1pt}{1pt}
+}
+{
+            \specialrule{1.3pt}{1pt}{0pt}
+        \end{tabular}
+    \end{center}
+}
+\newcommand{\ProblemSubtask}[2]{ \stepcounter{ProblemSubtask} \theProblemSubtask & #1 & #2 \\ }
+
+\setlist[enumerate]{itemsep=0pt, parsep=0pt, topsep=0pt}
+\setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt}
+
+
+
+\begin{document}
+
+
+%\begin{textblock}{3.8}(9.7,-1.2)
+	%\includegraphics[height=1.4cm]{NHDK_B.png}
+%\end{textblock}
+
+\begin{textblock}{0.1}(-0.6,-1.1)
+	\includegraphics[height=1.2cm]{AA_YTP.png}
+\end{textblock}
+
+
+
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\baselinestretch}{1.3}
+\pagenumbering{arabic}
+\setlength\parindent{24pt}
+\setlength\parskip{12pt}
+\cfoot{\thepage}
+\rhead{
+	\small{NHDK Ten Point Round \#17 \\(Div.1+2, Sponsored by YTP)}
+	
+}
+
+\ProblemTitle{D. Coding 夢之國的過年分配問題}{New Year}
+
+\ProblemStatement
+
+受到華人傳統習俗的影響，Coding 夢之國的過年一直都保持著除夕回男方家，初二回女方家的節奏，但是新上任的總統不喜歡這樣，因為這樣同一家人有很高的機率會無法成功團圓。
+
+為了讓每一家都能夠完美的團圓，夢之國的總統將過年假期分成前半以及後半，每個家庭都需要在假期的前半或後半團聚。
+
+已知兩個相異的家庭會因家庭成員互相結婚而建立姻親關係，為了錯開兩個具有姻親關係的家庭團聚的時間讓兩個家庭都能吃團圓飯，作為姻親關係的兩方$x, y$需滿足家庭 $x$ 和家庭$y$ 不能在相同時段團圓。
+
+總統先自己擬定了一種分配時段的方案，但由於長期接受夢之國的教育，所以總統的規劃能力低落，導致他規劃出來的方案錯誤百出，甚至可能會讓更多家庭沒辦法團圓。
+
+為了保護總統的自尊心，並且使得每個家庭都可以團圓，請你算出最少需要更改幾個家庭的時段，若夢之國的居民姻親關係本來就沒有辦法分配使得每個家庭都可以團圓的話，就輸出 $−1$。
+
+
+\ProblemInput
+
+輸入第一行有兩個正整數 $n,m$ 代表夢之國內有 $n$ 個家庭 $1,2,...,n$ 以及 $m$ 條婚姻關係
+
+輸入第二行有 $n$ 個整數 $d_i$ 代表總統一開始將第 $i$ 個家庭被分配到前半或是後半，若分配到前半則 $d_i = 0$，分配到後半則 $d_i = 1$
+
+接下來的 $m$ 行有兩個正整數 $u, v$ 代表 $u, v$ 兩個家庭之間有成員結婚
+
+\clearpage
+
+\ProblemOutput
+
+請輸出一個非負整數代表在總統的分配下，最少需要更改幾個家庭的分配才可以使得每一家都可以成功團圓，若這是不可能的任務，則輸出 $-1$
+
+
+
+\ProblemConstraints
+\begin{itemize}
+    \item $1 \le n \le 5000$
+    \item $1 \le m \le \min(\frac{n \times (n - 1)}{2}, 2\times10^5)$
+    \item $d_i \in \{0,1\}$
+    \item $1 \le u,v \le n$
+\end{itemize}
+
+
+\ProblemSampleTitle
+
+\begin{ProblemSampleWithNote}{1in.txt}{1out.txt}
+    在第一筆測資當中，所有家庭都被分配為在過年的前半段回老家團圓，但這會導致每個家庭都沒有辦法與其姻親一同相聚，因此我們需要將第 $2$ 個家庭的回老家的時間改為後半段，如此一來第 $1$ 個家庭的成員以及第 $2$ 個家庭與第 $1$ 有結婚的家庭成員會在過年前半到第 $1$ 個家庭團圓，而第 $3$ 個家庭的成員以及第 $2$ 個家庭與第 $3$ 有結婚的家庭成員會在過年前半到第 $3$ 個家庭團圓，每個家庭都可以在只調整一個家庭的情況下，在對應的時間內成功團圓，因此答案輸出 $1$
+\end{ProblemSampleWithNote}
+
+\clearpage
+
+\begin{ProblemSampleWithNote}{2in.txt}{2out.txt}
+    在第二筆測資當中，不管怎麼分配都會有至少一個家庭本該在自己老家團圓的時候需要到其他家庭過年，因此輸出 $-1$
+\end{ProblemSampleWithNote}
+
+\ProblemSubtaskTitle
+
+本題共有 \total{ProblemSubtask} 組子任務，條件限制如下所示。
+
+\begin{ProblemSubtaskTable}
+    \ProblemSubtask{13}{$n \le 20$, 若可以使每一家都團圓，那麼總統規劃的一定是最佳方案}
+    \ProblemSubtask{27}{$n\le 20$}
+    \ProblemSubtask{18}{若可以使每一家都團圓，那麼總統規劃的一定是最佳方案}
+    \ProblemSubtask{42}{無額外限制}
+\end{ProblemSubtaskTable}
+
+\end{document}

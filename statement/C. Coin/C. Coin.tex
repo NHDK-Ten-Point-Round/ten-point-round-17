@@ -1,0 +1,173 @@
+\documentclass[12pt]{article}
+\usepackage{xeCJK}
+\usepackage{fontspec}
+\usepackage[a4paper,top=2.8cm,bottom=2.8cm,left=2.3cm,right=2.3cm]{geometry}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{indentfirst}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{ulem}
+\usepackage{version}
+\usepackage{thmtools}
+\usepackage{qtree}
+\usepackage{algpseudocode}
+\usepackage{mathtools}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{ctable}
+\usepackage{totcount}
+\usepackage{textpos}
+
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt
+
+\setCJKmainfont[BoldFont={SourceHanSerifTW-SemiBold.otf},AutoFakeSlant]{SourceHanSerifTW-Regular.otf}
+\setmonofont{JetBrainsMono-Regular.ttf}
+\newfontfamily{\ProblemTitleMainFont}{SourceHanSerifTW-Bold.otf}
+\newCJKfontfamily{\ProblemTitleCJKFont}{SourceHanSerifTW-Bold.otf}
+\newcommand{\ProblemTitleFont}{\ProblemTitleMainFont\ProblemTitleCJKFont}
+
+\pagestyle{fancy}
+
+\lstset{
+basicstyle=\footnotesize\ttfamily
+}
+
+% \raggedcolumns
+
+\newcommand{\ProblemTitle}[2]{\noindent\Large{\ProblemTitleFont #1 (#2)}\normalsize\par}
+\newcommand{\ProblemSection}[1]{\vspace{0.6cm}\par\noindent\large{\ProblemTitleFont #1}\normalsize\par}
+\newcommand{\ProblemSubsection}[1]{\par\noindent{\ProblemTitleFont #1}\par}
+\newcommand{\ProblemStatement}{\ProblemSection{問題敘述}}
+\newcommand{\ProblemInput}{\ProblemSection{輸入說明}}
+\newcommand{\ProblemOutput}{\ProblemSection{輸出說明}}
+\newcommand{\ProblemConstraints}{\ProblemSection{測資限制}}
+
+\newcommand{\ProblemSampleTitle}{\ProblemSection{範例測資}}
+
+\newcounter{ProblemSample}
+\newcommand{\ProblemSample}[2]{
+    \stepcounter{ProblemSample}
+    \noindent
+    \begin{minipage}[t]{0.5\textwidth}
+        \ProblemSubsection{範例輸入 \theProblemSample}
+        \lstinputlisting{#1}
+    \end{minipage}
+    \begin{minipage}[t]{0.5\textwidth}
+        \ProblemSubsection{範例輸出 \theProblemSample}
+        \lstinputlisting{#2}
+    \end{minipage}
+}
+\newenvironment{ProblemSampleWithNote}[2]{
+    \stepcounter{ProblemSample}
+    \noindent
+    \begin{minipage}[t]{0.5\textwidth}
+        \ProblemSubsection{範例輸入 \theProblemSample}
+        \lstinputlisting{#1}
+    \end{minipage}
+    \begin{minipage}[t]{0.5\textwidth}
+        \ProblemSubsection{範例輸出 \theProblemSample}
+        \lstinputlisting{#2}
+    \end{minipage}
+    \vspace{-0.4cm}
+    \ProblemSubsection{範例說明 \theProblemSample}
+}{}
+
+\newcommand{\ProblemSubtaskTitle}{\ProblemSection{評分說明}}
+\newtotcounter{ProblemSubtask}
+\newenvironment{ProblemSubtaskTable}{
+    \begin{center}
+        \begin{tabular}{ccl}
+            \specialrule{1.3pt}{0pt}{1pt}
+            子任務 & 分數 & 額外輸入限制 \\
+            \specialrule{0.5pt}{1pt}{1pt}
+}
+{
+            \specialrule{1.3pt}{1pt}{0pt}
+        \end{tabular}
+    \end{center}
+}
+\newcommand{\ProblemSubtask}[2]{ \stepcounter{ProblemSubtask} \theProblemSubtask & #1 & #2 \\ }
+
+\setlist[enumerate]{itemsep=0pt, parsep=0pt, topsep=0pt}
+\setlist[itemize]{itemsep=0pt, parsep=0pt, topsep=0pt}
+
+
+
+\begin{document}
+
+\begin{textblock}{0.1}(-0.6,-1.1)
+	\includegraphics[height=1.2cm]{AA_YTP.png}
+\end{textblock}
+
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\baselinestretch}{1.3}
+\pagenumbering{arabic}
+\setlength\parindent{24pt}
+\setlength\parskip{12pt}
+\cfoot{\thepage}
+\rhead{
+	\small{NHDK Ten Point Round \#17 \\(Div.1+2, Sponsored by YTP)}
+	
+}
+
+\ProblemTitle{C. Coding 夢之國的付錢問題}{Coin}
+
+\ProblemStatement
+
+今天大胃王 Jack 來到了 Coding 夢之國來享用有名的烤肉
+
+Jack 來到的這家烤肉店需要先結帳才可以享用佳餚，但是已經走了一整天的 Jack 已經快要餓扁了，所以他希望可以越早結束結帳越好，Jack 稍微算了一下，不管是什麼面額的硬幣，拿一個所需要花的時間都差不多是 $1$ 秒鐘，不受面額影響，所以只要他給予店員的硬幣個數加上店員找給他的硬幣個數加總越少，結帳的速度就越快。
+
+現在告訴你 Coding 夢之國有哪幾種面額的硬幣，且店員會用最佳的找錢方式使得所需的硬幣量越少越好，請你寫一隻程式告訴 Jack 他應該給店員多少錢以及結帳過程需要花幾秒鐘吧。
+
+請放心，為了擁有完美的旅行及顧客體驗，Jack 以及烤肉店都準備了十分充足的錢，每一種面額都有足夠的數量，所以不需要擔心 Jack 付不出烤肉的錢或是烤肉店找不開，倒是烤肉店這裡有規定絕對不能拿高於原本價錢兩倍（不含）的金額給店員找，否則店員就會爆氣。
+
+\ProblemInput
+
+輸入第一行有兩個正整數 $n, p$ 代表 Jack 身上有幾種面額的硬幣以及這一餐的價格。
+
+輸入第二行有 $n$ 個整數 $d_1,d_2,...,d_n$ 代表 Coding 夢之國有哪幾種面額的硬幣。
+
+\ProblemOutput
+
+輸出兩個整數代表 Jack 應該給店員多少錢以及結帳過程最少需要花幾秒鐘，若有很多種方案，則輸出需給予的金額最少的。
+
+\clearpage
+
+\ProblemConstraints
+
+\begin{itemize}
+    \item $1 \le n \le 20$
+    \item $1 \le p \le 10^6$
+    \item $1 \le d_i \le 2\times10^6,\ d_{i-1} < d_i,\ d_1=1$
+\end{itemize}
+
+\ProblemSampleTitle
+
+\begin{ProblemSampleWithNote}{00_01.in}{00_01.out}
+
+在範例一中，我們可以拿三個七元硬幣給店員並找回一個一元硬幣，也可以拿四個五元硬幣給店員，這兩種方法都是最佳解答，共花 $4$ 秒鐘，但後者所需要拿給店員的錢是最少的，因此輸出 $20\ 4$。
+
+\end{ProblemSampleWithNote}
+
+\ProblemSample{00_02.in}{00_02.out}
+
+\ProblemSubtaskTitle
+
+本題共有 \total{ProblemSubtask} 組子任務，條件限制如下所示。
+
+\begin{ProblemSubtaskTable}
+    \ProblemSubtask{40}{$d_i \le 2000$ 且 $d_i$ 能夠被 $d_{i-1}$ 整除}
+    \ProblemSubtask{60}{無額外限制}
+\end{ProblemSubtaskTable}
+
+\end{document}
