@@ -5,7 +5,7 @@ using namespace std;
 
 ifstream ifs;
 ofstream file;
-string dir_name = "../testdata/04_";//path
+string dir_name = "../testdata/04_noSPFA_";//path
 
 int fileId = 0;
 
@@ -49,56 +49,48 @@ auto randfloat = bind(dis_float, gen);
 #define MAXW 1000000000
 
 int n, m, k;
+int dep[MAXN + 1];
 
 void make() {
-    n = randint() % (MAXN - 1) + 2;
-    m = randint() % MAXM + 1;
     n = MAXN;
     m = MAXM;
     m = min(m, n * (n - 1) / 2);
-    k = randint() % (MAXK + 1);
+    k = MAXK;
+    dep[1] = 1;
     cout << n << " " << m << " " << k << endl;
-    set<int> s[MAXN + 1];
-    set<int> Node;
-    for (int i = 0; i < m; i++) {
+    for (int i = 2; i <= n; i++) {
+        int b = i, a;
+        int c = randint() % MAXW + 1;
+        if (i < 6) {
+            a = randint() % (i - 1) + 1;
+        }
+        else {
+            a = i - (randint() % 5 + 1);
+        }
+        cout << a << " " << b << " " << c << endl;
+        dep[b] = dep[a] + 1;
+    }
+    m -= (n - 1);
+    while (m--) {
         int a = randint() % n + 1;
         int b = randint() % n + 1;
-        int c = randint() % MAXW + 1;
-        while (s[a].count(b) || s[b].count(a) || a == b) {
-            a = randint() % n + 1;
+        while (a == b)
             b = randint() % n + 1;
-        }
-        s[a].insert(b);
-        s[b].insert(a);
+        if (a > b)
+            swap(a, b);
+        int c = randint() % 5 + dep[b] - dep[a];
         cout << a << " " << b << " " << c << endl;
-        Node.insert(a);
-        Node.insert(b);
     }
-    int x, y;
-    vector<int> v;
-    for (int it: Node)
-        v.push_back(it);
-    for (int i = 1; i <= n; i++) {
-        if (!Node.count(i))
-            v.push_back(i);
-    }
-    random_shuffle(v.begin(), v.begin() + Node.size());
-    random_shuffle(v.begin() + Node.size(), v.end());
-
-    if (randint() % 3) {
-        x = v[v.size() - 2];
-        y = v[v.size() - 1];
-    }
-    else {
-        x = v[0];
-        y = v[1];
-    }
+    int x = 1;
+    int y = randint() % n + 1;
+    while (x == y)
+        y = randint() % n + 1;
     cout << x << " " << y << endl;
 }
 
 int main()
 {
-    int N = 40 - 35;
+    int N = 11 - 10;
     while (N--) {
         make_file();
         int t = 1;

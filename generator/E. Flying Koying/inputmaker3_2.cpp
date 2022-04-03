@@ -43,60 +43,34 @@ auto randfloat = bind(dis_float, gen);
 #define cout file
 #endif
 
-#define MAXN 10000
-#define MAXM 200000
-#define MAXK 0
-#define MAXW 1000000000
+#define MAXN 500
+#define MAXK 500
+#define MAXW 100000
 
-int n, m, k;
+int n, r, k;
 
 void make() {
-    n = randint() % (MAXN - 1) + 2;
-    m = randint() % MAXM + 1;
-    m = min(m, n * (n - 1) / 2);
-    k = 0;
-    cout << n << " " << m << " " << k << endl;
-    set<int> s[MAXN + 1];
-    set<int> Node;
-    for (int i = 0; i < m; i++) {
-        int a = randint() % n + 1;
-        int b = randint() % n + 1;
-        int c = randint() % MAXW + 1;
-        while (s[a].count(b) || s[b].count(a) || a == b) {
-            a = randint() % n + 1;
-            b = randint() % n + 1;
-        }
-        s[a].insert(b);
-        s[b].insert(a);
-        cout << a << " " << b << " " << c << endl;
-        Node.insert(a);
-        Node.insert(b);
-    }
-    int x, y;
-    vector<int> v;
-    for (int it: Node)
-        v.push_back(it);
-    for (int i = 1; i <= n; i++) {
-        if (!Node.count(i))
-            v.push_back(i);
-    }
-    random_shuffle(v.begin(), v.begin() + Node.size());
-    random_shuffle(v.begin() + Node.size(), v.end());
+    n = MAXN, k = MAXK;
+    if (randint() % 2)
+        n = randint() % MAXN + 1;
+    if (randint() % 2) 
+        k = 2;
+    r = randint() % (n / 2) + 1;
+    cout << n << " " << r << " " << k << endl;
 
-    if (randint() % 1) {
-        x = v[v.size() - 2];
-        y = v[v.size() - 1];
+    for (int i = 1; i <= n; i++) {
+        if (i == 1 || i == n - 1)
+            cout << randint() % MAXW + 1 << " ";
+        else
+            cout << 1 << " ";
     }
-    else {
-        x = v[0];
-        y = v[1];
-    }
-    cout << x << " " << y << endl;
+    cout << endl;
+
 }
 
 int main()
 {
-    int N = 20 - 15;
+    int N = 5;
     while (N--) {
         make_file();
         int t = 1;

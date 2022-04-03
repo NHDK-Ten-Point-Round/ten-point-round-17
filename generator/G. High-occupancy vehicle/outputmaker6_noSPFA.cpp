@@ -5,8 +5,8 @@ using namespace std;
 
 ifstream in;
 ofstream out;
-string indir = "../testdata/04_"; //input path
-string outdir = "../testdata/04_";//output path
+string indir = "../testdata/06_noSPFA_"; //input path
+string outdir = "../testdata/06_noSPFA_";//output path
 int fileId = 0;
 
 void start() { // 建立檔案 
@@ -67,18 +67,18 @@ using namespace std;
 #endif
 const int INF = 0x3f3f3f3f3f3f3f3f;
 const int P = 1e9+7;
-#define MAXN 10005
-#define MAXM 2000005 
+#define MAXN 20005
+#define MAXM 100005 
 
 int n, m, k, x, y;
-int dis[MAXN][11];
+int dis[MAXN][101];
 static vector<pii> G[MAXN];
 
 #define piii pair<int, pair<int, int>>
 
 void sol() {
     cin >> n >> m >> k;
-    for (int i = 1; i <= n; i++)
+    for (int i = 1; i < MAXN; i++)
         G[i].clear();
     for (int i = 0, a, b, c; i < m; i++) {
         cin >> a >> b >> c;
@@ -120,7 +120,7 @@ void sol() {
 
 signed main()
 {
-    int N = 40 - 35; // number of input data
+    int N = 10; // number of input data
     ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     // cin >> n;
     while (N--)

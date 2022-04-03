@@ -1,12 +1,13 @@
 #include <bits/stdc++.h>
 // #define ll long long
+// #define int long long
 
 using namespace std;
 
 ifstream in;
 ofstream out;
-string indir = "../testdata/05_"; //input path
-string outdir = "../testdata/05_";//output path
+string indir = "../testdata/03_noSPFA_"; //input path
+string outdir = "../testdata/03_noSPFA_";//output path
 int fileId = 0;
 
 void start() { // 建立檔案 
@@ -78,7 +79,7 @@ static vector<pii> G[MAXN];
 
 void sol() {
     cin >> n >> m >> k;
-    for (int i = 1; i < MAXN; i++)
+    for (int i = 0; i < MAXN; i++)
         G[i].clear();
     for (int i = 0, a, b, c; i < m; i++) {
         cin >> a >> b >> c;
@@ -120,7 +121,7 @@ void sol() {
 
 signed main()
 {
-    int N = 10; // number of input data
+    int N = 11 - 10; // number of input data
     ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
     // cin >> n;
     while (N--)
