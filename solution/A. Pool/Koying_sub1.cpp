@@ -9,8 +9,6 @@ int main() {
     cin >> n >> m >> t;
     cin >> x >> y;
 
-    assert(n + m == 2);
-
     int q;
     while (t--) {
         cin >> q;
