@@ -14,12 +14,35 @@ slideOptions:        # 簡報相關的設定
 </style>
 # NHDK TPR #17 
 (Div.1+2, Sponsored by YTP)
+
 題解
+
+
+---
+
+## 特別感謝
+
+----
+
+### AA 競程
+![](https://i.imgur.com/Xn4lg5v.png)
+
+
+----
+
+### YTP 少年圖靈計畫
+![](https://i.imgur.com/NLjITye.png)
+
+
+----
+
+### 驗題者們
+sam571128、franklee1015、btlllbill、dreamoon、littlecube、Fysty、SFeather、wcwu、Darren、user1519、KTK2538、amano_hina
 
 ---
 
 ## A
-### Colten 的撞球對決記 (Pool)
+### [Colten 的撞球對決記 (Pool)](https://codeforces.com/group/H0qY3QmnOW/contest/376232/problem/A)
 AC: 38
 First Kill: Paul Liao
 
@@ -57,7 +80,7 @@ First Kill: Paul Liao
 ---
 
 ## B
-### 豪邁大笑的 Koying (Laughing Koying)
+### [豪邁大笑的Koying (Laughing Koying)](https://codeforces.com/group/H0qY3QmnOW/contest/376232/problem/B)
 AC: 39
 First Kill: Paul Liao
 
@@ -94,7 +117,7 @@ First Kill: Paul Liao
 ---
 
 ## C
-### Coding 夢之國的付錢問題 (Coin)
+### [Coding 夢之國的付錢問題 (Coin)](https://codeforces.com/group/H0qY3QmnOW/contest/376232/problem/C)
 AC: 12
 First Kill: Paul Liao
 
@@ -134,7 +157,7 @@ First Kill: Paul Liao
 ---
 
 ## D
-### Coding 夢之國的過年分配問題 (New Year)
+### [Coding 夢之國的過年分配問題 (New Year)](https://codeforces.com/group/H0qY3QmnOW/contest/376232/problem/D)
 AC: 10
 First Kill: Paul Liao
 
@@ -203,7 +226,7 @@ First Kill: Paul Liao
 ---
 
 ## E
-### Koying 的彈跳床飛行記 (Flying Koying)
+### [Koying 的彈跳床飛行記 (Flying Koying)](https://codeforces.com/group/H0qY3QmnOW/contest/376232/problem/E)
 AC: 6
 First Kill: Paul Liao
 
@@ -304,7 +327,7 @@ $\displaystyle dp[i][j] = \max_{j-r \le l < j}(dp[i - 1][l] + h[l])$
 ---
 
 ## F
-### Colten 的科學展覽會 (Science Fair)
+### [Colten 的科學展覽會 (Science Fair)](https://codeforces.com/group/H0qY3QmnOW/contest/376232/problem/F)
 AC: 5
 First Kill: Paul Liao
 
@@ -357,7 +380,7 @@ $n, m \le 30$
 ---
 
 ## G
-### 高乘載管制 (High‐occupancy vehicle)
+### [高乘載管制 (High‐occupancy vehicle)](https://codeforces.com/group/H0qY3QmnOW/contest/376232/problem/G)
 AC: 0
 
 真 防破台
@@ -451,7 +474,7 @@ Dijkstra 與 Dynamic Programming
 ---
 
 ## H
-### Coding 夢之國的大胃王 Jack (Big Stomach Jack)
+### [Coding 夢之國的大胃王 Jack (Big Stomach Jack)](https://codeforces.com/group/H0qY3QmnOW/contest/376232/problem/H)
 AC: 2
 First Kill: Gino
 
