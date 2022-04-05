@@ -1,4 +1,4 @@
-# ten-point-round-17
+# Ten-Point-Round-17
 ---
 
 ## 比賽時間：4/2 14:00 ~ 17:00
@@ -28,4 +28,4 @@
 - Python 3 / CPython
 
 ![](https://i.imgur.com/wUTLk3r.png)
-
+![CC4.0](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
