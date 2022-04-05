@@ -16,9 +16,9 @@
 #### sam571128、penguin71630、franklee1015、btlllbill、dreamoon、littlecube、Fysty、SFeather、wcwu、Darren、user1519、KTK2538、amano_hina
 
 ## 競賽網站
--  mirror 網址：https://codeforces.com/gym/376232
--  賽中記分板網址：https://nhdk-ten-point-round.github.io/Ranking/20220402_Ten_Point_Round_17/Ranking.html
--  題本：https://drive.google.com/drive/folders/1OLob5GQe2eVKON6YBetgon7VFZxBpXmD?usp=sharing
+-  mirror 網址：[按我連結](https://codeforces.com/gym/376232)
+-  賽中記分板網址：[按我連結](https://nhdk-ten-point-round.github.io/Ranking/20220402_Ten_Point_Round_17/Ranking.html)
+-  題本：[按我連結](./statement/index.md)
 ## 開放語言及編譯參數
 
 - C++14 / g+\+
@@ -30,7 +30,9 @@
 ![](https://i.imgur.com/wUTLk3r.png)
 
 
-#LICENSE:
-Creative Commons 4.0 (BY-NC-SA)
-https://creativecommons.org/licenses/by-nc-sa/4.0/
+# 授權LICENSE:
+[授權說明](./LICENSE)
+  
+[Creative Commons 4.0 (BY-NC-SA)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+  
 ![CC4.0](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
