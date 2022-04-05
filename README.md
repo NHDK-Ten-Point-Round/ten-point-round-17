@@ -28,4 +28,9 @@
 - Python 3 / CPython
 
 ![](https://i.imgur.com/wUTLk3r.png)
+
+
+#LICENSE:
+Creative Commons 4.0 (BY-NC-SA)
+https://creativecommons.org/licenses/by-nc-sa/4.0/
 ![CC4.0](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
