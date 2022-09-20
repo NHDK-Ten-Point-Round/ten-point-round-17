@@ -17,7 +17,7 @@
 
 ## 競賽網站
 -  mirror 網址：[按我連結](https://codeforces.com/gym/376232)
--  賽中記分板網址：[按我連結](https://nhdk-ten-point-round.github.io/Ranking/20220402_Ten_Point_Round_17/Ranking.html)
+-  賽中記分板網址：[按我連結](https://nhdk-ten-point-round.github.io/ten-point-round-17/Ranking/Ranking.html)
 -  題本：[按我連結](./statement/index.md)
 ## 開放語言及編譯參數
 
